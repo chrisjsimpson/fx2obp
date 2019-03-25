@@ -1,8 +1,9 @@
 
 ## What
 
-Convert a http://www.floatrates.com/json-feeds.html daily rates json src file 
+- Convert a http://www.floatrates.com/json-feeds.html daily rates json src file 
 to valid Open Bank Project payload.
+- HTTP PUT them to an Open Bank Project endpoint to populate the database via the `fx` api call
 
 - Uses python3 
 
