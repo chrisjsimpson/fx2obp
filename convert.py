@@ -1,4 +1,13 @@
 import json
+import requests
+import os
+from datetime import datetime
+
+POST_TO_OBP=True
+WRITE_TO_FILE=True
+ENDPOINT = os.getenv('ENDPOINT')
+POST_URL="{}/obp/v3.1.0/banks/{}/fx"
+AUTH_TOKEN=os.getenv('AUTH_TOKEN')
 
 banks = ['bnpp-irb.04.pl.bgz', 'bnpp-irb.04.us.bow', 'bnpp-irb.04.tr.teb',
          'bnpp-irb.04.ua.ukrsibbank', 'bnpp-irb.04.ma.bmci', 
@@ -40,13 +49,28 @@ for src_currency in currency_codes:
       currencies = json.loads(data) 
       for to_currency in currencies:
         output = {}
-        output['from_currency_code'] = src_currency
-        output['to_currency_code'] = to_currency
+        output['from_currency_code'] = str(src_currency.upper())
+        output['to_currency_code'] = str(to_currency.upper())
         output['conversion_value'] = currencies[to_currency]['rate']
         output['inverse_conversion_value'] = currencies[to_currency]['inverseRate']
+        src_date = currencies[to_currency]['date']
+        src_date_format = "%a, %d %b %Y %H:%M:%S %Z"
+        date = datetime.strptime(src_date, src_date_format)
+        dst_date_format = "%Y-%m-%dT%k:%M:%S%ZZ"
+        output['effective_date'] = date.strftime(dst_date_format)
         # For every bank, generate and write out the same exchange rate
         for bank in banks:
           output['bank_id'] = bank
-          with open(bank + '-' + src_currency + '-' + to_currency + '-obp.json', 'w') as fp_output:
-            fp_output.write(json.dumps(output))
+          if POST_TO_OBP is True:
+            url = POST_URL.format(ENDPOINT, bank)
+            print(url)
+            print (output)
+            authorization = 'DirectLogin token="{}"'.format(AUTH_TOKEN)
+            headers = {'Content-Type': 'application/json',
+                      'Authorization': authorization}
+            request = requests.put(url, headers=headers, data=json.dumps(output))
+            print(request.text)
+          if WRITE_TO_FILE is True:
+            with open(bank + '-' + src_currency + '-' + to_currency + '-obp.json', 'w') as fp_output:
+                fp_output.write(json.dumps(output))
   f.close()
