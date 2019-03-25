@@ -3,8 +3,8 @@ import requests
 import os
 from datetime import datetime
 
-POST_TO_OBP=True
-WRITE_TO_FILE=True
+POST_TO_OBP=os.getenv('POST_TO_OBP', '')
+WRITE_TO_FILE=os.getenv('WRITE_TO_FILE', '')
 ENDPOINT = os.getenv('ENDPOINT')
 POST_URL="{}/obp/v3.1.0/banks/{}/fx"
 AUTH_TOKEN=os.getenv('AUTH_TOKEN')
@@ -61,7 +61,7 @@ for src_currency in currency_codes:
         # For every bank, generate and write out the same exchange rate
         for bank in banks:
           output['bank_id'] = bank
-          if POST_TO_OBP is True:
+          if POST_TO_OBP.lower() == 'true':
             url = POST_URL.format(ENDPOINT, bank)
             print(url)
             print (output)
@@ -70,7 +70,7 @@ for src_currency in currency_codes:
                       'Authorization': authorization}
             request = requests.put(url, headers=headers, data=json.dumps(output))
             print(request.text)
-          if WRITE_TO_FILE is True:
+          if WRITE_TO_FILE.lower() == 'true':
             with open(bank + '-' + src_currency + '-' + to_currency + '-obp.json', 'w') as fp_output:
                 fp_output.write(json.dumps(output))
   f.close()
