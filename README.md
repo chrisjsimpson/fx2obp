@@ -8,6 +8,9 @@ to valid Open Bank Project payload.
 
 ## Setup 
 
+- You must have a valid Direct Login token
+- You must have the `CanCreateFxRateAtAnyBank` permission
+
 ```
 export ENDPOINT=<api.example.com>
 export AUTH_TOKEN=<direct-login-token>
