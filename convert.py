@@ -14,7 +14,7 @@ url = 'https://bnpparibas-irb.openbankproject.com/obp/v3.1.0/banks'
 req = requests.get(url, headers={'Content-Type':'Application/Json'})
 banks = json.loads(req.text)['banks']
 
-currency_codes = ['dzd', 'gbp', 'chf', 'eur']
+currency_codes = ['dzd', 'gbp', 'chf', 'eur', 'try']
 
 '''
 For each file input , convert it to an OBP foriegn exchange valid payload.
