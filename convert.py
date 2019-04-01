@@ -9,10 +9,12 @@ ENDPOINT = os.getenv('ENDPOINT')
 POST_URL="{}/obp/v3.1.0/banks/{}/fx"
 AUTH_TOKEN=os.getenv('AUTH_TOKEN')
 
-banks = ['bnpp-irb.04.pl.bgz', 'bnpp-irb.04.us.bow', 'bnpp-irb.04.tr.teb',
-         'bnpp-irb.04.ua.ukrsibbank', 'bnpp-irb.04.ma.bmci', 
-         'bnpp-irb.04.uk.uk']
-currency_codes = ['chf', 'eur']
+# Get bank ids
+url = 'https://bnpparibas-irb.openbankproject.com/obp/v3.1.0/banks'
+req = requests.get(url, headers={'Content-Type':'Application/Json'})
+banks = json.loads(req.text)['banks']
+
+currency_codes = ['dzd', 'gbp', 'chf', 'eur']
 
 '''
 For each file input , convert it to an OBP foriegn exchange valid payload.
@@ -42,7 +44,6 @@ Invalid format example from source: (http://www.floatrates.com)
   "inverseRate": 0.9998663077377
 }
 '''
-
 for src_currency in currency_codes:
   with open(src_currency + '.json') as f:
       data = f.read()
@@ -60,9 +61,9 @@ for src_currency in currency_codes:
         output['effective_date'] = date.strftime(dst_date_format)
         # For every bank, generate and write out the same exchange rate
         for bank in banks:
-          output['bank_id'] = bank
+          output['bank_id'] = bank['id']
           if POST_TO_OBP.lower() == 'true':
-            url = POST_URL.format(ENDPOINT, bank)
+            url = POST_URL.format(ENDPOINT, bank['id'])
             print(url)
             print (output)
             authorization = 'DirectLogin token="{}"'.format(AUTH_TOKEN)
@@ -71,6 +72,6 @@ for src_currency in currency_codes:
             request = requests.put(url, headers=headers, data=json.dumps(output))
             print(request.text)
           if WRITE_TO_FILE.lower() == 'true':
-            with open(bank + '-' + src_currency + '-' + to_currency + '-obp.json', 'w') as fp_output:
+            with open(bank['id'] + '-' + src_currency + '-' + to_currency + '-obp.json', 'w') as fp_output:
                 fp_output.write(json.dumps(output))
   f.close()
