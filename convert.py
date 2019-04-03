@@ -3,7 +3,9 @@ import requests
 import os
 from datetime import datetime
 
+# If you want to post, set `export POST_TO_OBP=true` before running script
 POST_TO_OBP=os.getenv('POST_TO_OBP', '')
+# If you want to write to file, (for example testing) set `export WRITE_TO_FILE=true` before running script
 WRITE_TO_FILE=os.getenv('WRITE_TO_FILE', '')
 ENDPOINT = os.getenv('ENDPOINT')
 POST_URL="{}/obp/v3.1.0/banks/{}/fx"
