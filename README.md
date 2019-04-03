@@ -28,6 +28,7 @@ to post to an endpoint, set the environment up:
 export WRITE_TO_FILE=False
 export POST_TO_OBP=True
 ```
+The above allows you to test before blasting an endpint with invalid data.
 
 
 ## Run
