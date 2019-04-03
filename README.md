@@ -21,6 +21,9 @@ export AUTH_TOKEN=<direct-login-token>
 - WRITE_TO_FILE - Write output to disk
 - POST_TO_OBP - Post to Open Bank Project api endpoint
 
+**Note:** By default this wont post to the enpoint. This is to allow testing
+to post to an endpoint, set the environment up:
+
 ```
 export WRITE_TO_FILE=False
 export POST_TO_OBP=True
