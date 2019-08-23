@@ -8,10 +8,10 @@ from pathlib import Path
 POST_TO_OBP=os.getenv('POST_TO_OBP', '')
 # If you want to write to file, (for example testing) set `export WRITE_TO_FILE=true` before running script
 WRITE_TO_FILE=os.getenv('WRITE_TO_FILE', '')
-ENDPOINT = os.getenv('ENDPOINT')
 POST_URL="{}/obp/v3.1.0/banks/{}/fx"
 AUTH_TOKEN=os.getenv('AUTH_TOKEN')
 API_HOST=os.getenv('API_HOST')
+BANK_ID=os.getenv('BANK_ID')
 
 # Get bank ids
 req = requests.get(API_HOST + '/obp/v3.1.0/banks', headers={'Content-Type':'Application/Json'})
@@ -72,7 +72,7 @@ for currency_file in Path('./currencies').iterdir():
         for bank in banks:
           output['bank_id'] = bank['id']
           if POST_TO_OBP.lower() == 'true':
-            url = POST_URL.format(ENDPOINT, bank['id'])
+            url = POST_URL.format(API_HOST, bank['id'])
             print(url)
             print (output)
             authorization = 'DirectLogin token="{}"'.format(AUTH_TOKEN)
