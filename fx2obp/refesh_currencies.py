@@ -32,4 +32,5 @@ def refesh_currencies():
       raise
   return currencies
 
-refesh_currencies()
+if __name__ == '__main__':
+  refesh_currencies()
