@@ -7,8 +7,6 @@ html_doc = requests.get("http://www.floatrates.com/json-feeds.html")
 
 soup = BeautifulSoup(html_doc.text, 'html.parser')
 
-print(soup.prettify())
-
 def refesh_currencies():
   download_links = []
   for link in soup.find_all('a'):
