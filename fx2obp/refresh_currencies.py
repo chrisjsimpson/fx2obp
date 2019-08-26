@@ -7,7 +7,7 @@ html_doc = requests.get("http://www.floatrates.com/json-feeds.html")
 
 soup = BeautifulSoup(html_doc.text, 'html.parser')
 
-def refesh_currencies():
+def refresh_currencies():
   download_links = []
   for link in soup.find_all('a'):
     try:
@@ -33,4 +33,4 @@ def refesh_currencies():
   return currencies
 
 if __name__ == '__main__':
-  refesh_currencies()
+  refresh_currencies()
