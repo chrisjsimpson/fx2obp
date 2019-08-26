@@ -12,7 +12,6 @@ def run():
   POST_URL="{}/obp/v3.1.0/banks/{}/fx"
   AUTH_TOKEN=os.getenv('AUTH_TOKEN')
   API_HOST=os.getenv('API_HOST')
-  BANK_ID=os.getenv('BANK_ID')
   CURRENCIES=os.getenv('CURRENCIES') # Only get specified currencies: e.g. export CURRENCIES=usd,gbp,dzd
 
   # Get bank ids
