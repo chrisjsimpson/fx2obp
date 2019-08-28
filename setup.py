@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
   name="fx2obp",
-  version='0.1',
+  version='0.2',
   description="Convert exchange rates to OBP format, and optionally post to an OBP instance",
   url="https://github.com/chrisjsimpson/fx2obp",
   author="Chris Simpson",
