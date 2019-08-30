@@ -155,7 +155,7 @@ def postFx(POST_TO_OBP=True, WRITE_TO_FILE=False, AUTH_TOKEN=None,
                 post_currency(fh)
     else:
         for currency_file in Path(sourceDir).iterdir():
-            with open(currency_file) as fh:
+            with open(str(currency_file)) as fh:
                 post_currency(fh)
 
 if __name__ == "__main__":
