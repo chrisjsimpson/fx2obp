@@ -56,7 +56,7 @@ Troubleshooting cron:
 to post to an endpoint, set the environment up:
 
 ```
-export AUTH_TOKEN=<direct-login-token>
+export AUTH_TOKEN="direct-login-token"
 export WRITE_TO_FILE=False
 export POST_TO_OBP=True
 ```
