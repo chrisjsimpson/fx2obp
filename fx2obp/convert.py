@@ -101,9 +101,7 @@ def postFx(POST_TO_OBP=True, WRITE_TO_FILE=False, AUTH_TOKEN=None,
 
     def post_currency(fh):
         data = fh.read()
-        src_currency = (
-            str(currency_file.resolve()).split("currencies/")[1].split(".json")[0]
-        )
+        src_currency = currency_file.parts[-1].split('.')[0]
         if data == "":
             return -1
         currencies = json.loads(data)
