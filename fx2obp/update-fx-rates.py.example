@@ -1,0 +1,15 @@
+from fx2obp import postFx
+
+## Example
+
+# postFx(POST_TO_OBP=True, WRITE_TO_FILE=False, AUTH_TOKEN="ejfjdsfkfdg",
+#          API_HOST=https://api.example.com, ephemeral=True):
+
+#Edit below with your own API_HOST and AUTH_TOKEN
+postFx(POST_TO_OBP=True, WRITE_TO_FILE=False, AUTH_TOKEN="", API_HOST="", ephemeral=True)
+
+
+# Example just write to file, don't post them to a sandbox yet:
+# NOTE AUTH_TOKEN and API_HOST is still needed to determine bank ids
+# postFx(POST_TO_OBP=False, WRITE_TO_FILE=True, AUTH_TOKEN="", API_HOST="", ephemeral=False)
+
