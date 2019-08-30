@@ -53,7 +53,7 @@ def fetch_currencies(ephemeral=False, **kwargs):
               filePath = Path(path, '{}.json'.format(currency_code))
             else: 
               filePath = Path("./currencies/{}.json".format(currency_code))
-            with open(filePath, "w") as f:
+            with open(str(filePath), "w+") as f:
                 f.write(resp.text)
         except:
             raise
