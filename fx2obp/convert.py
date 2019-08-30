@@ -38,9 +38,9 @@ def postFx(POST_TO_OBP=True, WRITE_TO_FILE=False, AUTH_TOKEN=None,
              tmpfile will create, us and (when done) delete itself 
             automatically for you""")
       exit(-1)
-  
-    if ephemeral:
-      fetch_currencies()
+
+    # Fetch most up to date exchange rates 
+    sourceDir = fetch_currencies(ephemeral=ephemeral)
    
     # If ephemeral storate is NOT requested, verify the given sourceDir exists
     if ephemeral is not True and not Path.exists(Path(sourceDir)):
