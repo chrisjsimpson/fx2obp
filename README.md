@@ -25,7 +25,7 @@ pip install -e ./
 
 - If you want to post to an Open Bank Project sandbox, you must:
   - have a valid Direct Login token: `AUTH_TOKEN`
-  - specify the correct host to use : `
+  - specify the correct host to use : `API_HOST`
 - You must have the `CanCreateFxRateAtAnyBank` permission
 
 ### Cron friendly
