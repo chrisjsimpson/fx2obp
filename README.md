@@ -14,8 +14,20 @@
 ### Cron friendly
 
 #### To install as a cronjob
+
+1. Clone the repo
+2. `cp update-fx-rates.py.example to update-fx-rates.py
+  2.1 Edit with your sandbox hostname and api token
+3. Add a cron entry e.g. For everyday at 1am:
+  `2.1 0 1 * * * /usr/bin/python3 /home/deploy/fx2obp/update-fx-rates.py`
+
+Troubleshooting cron:
+
+- Is python3 installed?
+- Only use absolute paths, relative don't work in cron
+- Can you run the command manually as that use, does it fail?
+
 ```
-For cron example, see `update-fx-rates.py.example`
 
 - If you want to post to an Open Bank Project sandbox, you must:
   - have a valid Direct Login token: `AUTH_TOKEN`
