@@ -23,6 +23,11 @@ pip install -e ./
 
 ## Configuration
 
+- If you want to post to an Open Bank Project sandbox, you must:
+  - have a valid Direct Login token: `AUTH_TOKEN`
+  - specify the correct host to use : `
+- You must have the `CanCreateFxRateAtAnyBank` permission
+
 ### Cron friendly
 
 #### To install as a cronjob
@@ -39,12 +44,6 @@ Troubleshooting cron:
 - Only use absolute paths, relative don't work in cron
 - Can you run the command manually as that use, does it fail?
 
-```
-
-- If you want to post to an Open Bank Project sandbox, you must:
-  - have a valid Direct Login token: `AUTH_TOKEN`
-  - specify the correct host to use : `
-- You must have the `CanCreateFxRateAtAnyBank` permission
 
 #### Run manually
 
