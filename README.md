@@ -1,15 +1,23 @@
 
-## What
+## What this does
 
-- Convert a http://www.floatrates.com/json-feeds.html daily rates json src file 
-to valid Open Bank Project payload.
-- HTTP PUT them to an Open Bank Project endpoint to populate the database via the `fx` api call
+1. Fetch the json daily foreign exchange rates for each currency from http://www.floatrates.com/json-feeds.html.
+2. Convert the json objects format to a the format supported by the Open Bank Project
+3. Optionally POST them to an Open Bank Project instance using its api, or simply save the converted json to disk
 
-- Uses python3 
+### Requirements
 
-## Setup 
+- python3 
 
-- You must have a valid Direct Login token
+## Configuration
+
+### Cron friendly
+
+For cron example, see `update-fx-rates.py.example`
+
+- If you want to post to an Open Bank Project sandbox, you must:
+  - have a valid Direct Login token: `AUTH_TOKEN`
+  - specify the correct host to use : `
 - You must have the `CanCreateFxRateAtAnyBank` permission
 
 ```
