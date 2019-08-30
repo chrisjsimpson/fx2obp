@@ -9,6 +9,18 @@
 
 - python3 
 
+### Installation
+
+```
+pip install fx2obp
+```
+###### Or, install directly from repo: 
+```
+git clone <this repo>
+cd <this repo> 
+pip install -e ./
+```
+
 ## Configuration
 
 ### Cron friendly
