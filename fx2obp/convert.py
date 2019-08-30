@@ -3,7 +3,10 @@ import requests
 import os
 from datetime import datetime
 from pathlib import Path
-from .fetch_currencies import fetch_currencies
+try:
+  from .fetch_currencies import fetch_currencies
+except ModuleNotFoundError:
+  from fetch_currencies import fetch_currencies 
 
 
 def postFx(POST_TO_OBP=True, WRITE_TO_FILE=False, AUTH_TOKEN=None, 
@@ -154,3 +157,6 @@ def postFx(POST_TO_OBP=True, WRITE_TO_FILE=False, AUTH_TOKEN=None,
         for currency_file in Path(sourceDir).iterdir():
             with open(currency_file) as fh:
                 post_currency(fh)
+
+if __name__ == "__main__":
+  postFx()
