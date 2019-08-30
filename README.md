@@ -72,9 +72,3 @@ You will then see the script first download the latest exchange rates,
 and then post them to the Open Bank Project instance if specified.
 
 
-
-
-## Run
-    pip install -r requirements.txt
-    python3 convert.py
-
