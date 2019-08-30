@@ -12,7 +12,9 @@
 ### Installation
 
 ```
-pip install fx2obp
+# If you're on debian, you neede python3 and pip3
+# e.g. apt install python3-pip
+pip3 install fx2obp
 ```
 ###### Or, install directly from repo: 
 ```
@@ -33,10 +35,10 @@ pip install -e ./
 #### To install as a cronjob
 
 1. Clone the repo
-2. `cp update-fx-rates.py.example to update-fx-rates.py
+2. `cp update-fx-rates.py.example to update-fx-rates.py`
   2.1 Edit with your sandbox hostname and api token
 3. Add a cron entry e.g. For everyday at 1am:
-  `2.1 0 1 * * * /usr/bin/python3 /home/deploy/fx2obp/update-fx-rates.py >> /var/log/syslog`
+  3.1 `0 1 * * * /usr/bin/python3 /home/deploy/fx2obp/update-fx-rates.py >> /var/log/syslog`
 
 Troubleshooting cron:
 
